@@ -29,23 +29,24 @@ for n_iter, (train_idx, valid_idx) in enumerate(skf.split(X_train, y_train), 1):
     # Apply SMOTE for handling class imbalance
     smote = SMOTE()
     X_train_over, y_train_over = smote.fit_resample(X_train_fold, y_train_fold)
-    sample_weights_over = np.where(y_train_over == 0, 0.28, 0.72)  # Assign different weights to classes
+    sample_weights_over1 = np.where(y_train_over == 0, 0.2, 0.8)
+    sample_weights_over2 = np.where(y_train_over == 0, 0.3, 0.7) # Assign different weights to classes
 
     # Load models
     model1, model2, model3 = get_models()
 
     # Train models
-    model1.fit(X_train_over, y_train_over)
-    model2.fit(X_train_over, y_train_over)
-    model3.fit(X_train_over, y_train_over, sample_weight=sample_weights_over)
+    model1.fit(X_train_over, y_train_over, sample_weight=sample_weights_over1)
+    model2.fit(X_train_over, y_train_over, sample_weight=sample_weights_over2)
+    model3.fit(X_train_over, y_train_over)
 
     # Validation predictions
     xgb_valid_proba = model1.predict_proba(X_valid_fold)[:, 1]
     lgbm_valid_proba = model2.predict_proba(X_valid_fold)[:, 1]
-    gbm_valid_proba = model3.predict_proba(X_valid_fold)[:, 1]
+    rf_valid_proba = model3.predict_proba(X_valid_fold)[:, 1]
 
     # Ensemble prediction (average of all models)
-    valid_eval_proba = (xgb_valid_proba + lgbm_valid_proba + gbm_valid_proba) / 3
+    valid_eval_proba = (xgb_valid_proba + lgbm_valid_proba + rf_valid_proba) / 3
     valid_eval = np.where(valid_eval_proba > 0.5, 1, 0)
 
     # Evaluate validation performance
