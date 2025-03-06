@@ -1,6 +1,5 @@
 # Real-time AI Model for Prehospital Trauma Mortality Predcition
 
-## Introduction  
 This project presents a **real-time AI model for predicting emergency room (ER) mortality in trauma patients using only prehospital data**.  
 Traditional triage tools rely on **limited physiological data and subjective assessments**, often leading to misclassification.  
 To address these limitations, we developed an **interpretable AI model utilizing 21 prehospital variables**, validated across multiple institutions and countries.  
