@@ -24,7 +24,7 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
 
 ---
 
-## Key Features  
+## Features  
 
  **Dynamic Weight Adjustment**  
    - The ensemble model dynamically adjusts weight distribution, reducing model bias during training  
