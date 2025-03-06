@@ -49,12 +49,8 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
 ---
 
 ## File Structure  
-
-```bash
-/prehospital-trauma-ai
-├── model.py          # AI model implementation (XGBoost + LightGBM + Random Forest)
-├── data_loader.py    # Data loading and preprocessing (KTDB & external datasets)
-├── train.py          # Model training script
-├── evaluate.py       # Performance evaluation and metric computation
-├── shap_analysis.py  # SHAP analysis for model interpretability
-├── README.md         # Project overview and usage guide
+- **`model.py`** : Implements the AI model using XGBoost, LightGBM, and Random Forest.  
+- **`data_loader.py`** : Handles data loading, filtering, and preprocessing for internal and external validation datasets.  
+- **`train.py`** : Trains the AI model using ensemble learning and optimizes class weights.  
+- **`evaluate.py`** : Evaluates the trained model's performance and generates key metrics.   
+- **`README.md`** : Provides an overview of the project and usage instructions.  
