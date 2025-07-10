@@ -24,6 +24,15 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
 
 ---
 
+## Trauma Data Prepreocessing
+- **This script anonymizes and processes trauma-related prehospital data into model-ready features.**  
+- **Main Steps**:  
+  - Classification of time-of-injury as day, night, or missing
+  - Age group binning (0–120 by 5-year intervals)
+  - One-hot encoding of categorical variable: gender, intentionality, etc.
+
+---
+
 ## Features  
 
  **Dynamic Weight Adjustment**  
