@@ -53,4 +53,6 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
 - **`data_loader.py`** : Handles data loading, filtering, and preprocessing for internal and external validation datasets.  
 - **`train.py`** : Trains the AI model using ensemble learning and optimizes class weights.  
 - **`evaluate.py`** : Evaluates the trained model's performance and generates key metrics.   
-- **`README.md`** : Provides an overview of the project and usage instructions.  
+- **`README.md`** : Provides an overview of the project and usage instructions.
+- **`Prehospital-AI model`** : Folder containing trained 5-fold model files (.pkl)
+- **`Sample_dataset.csv`** : Sample prehospital data for testing
