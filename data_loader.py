@@ -14,8 +14,7 @@ def load_data():
     df = pd.read_table(os.path.join(DATA_PATH, 'data.txt'), sep=',', low_memory=False)
 
     # Drop unnecessary columns
-    X_features = df.drop(['institution_id', 'patient_id', 'visit_date', 'visit_time',
-                          'survive', 'in_hospital_deceased', 'in_hospital_survive', 'ISS'], axis=1).values
+    X_features = df.drop(['survive'], axis=1).values
     y_label = df['survive'].values
     return X_features, y_label
 
