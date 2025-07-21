@@ -5,8 +5,6 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
 
     # 1. Timestamp parsing and latency calculation
     df['injury_time'] = pd.to_datetime(df['injury_timestamp'], errors='coerce')
-    df['symptom_time'] = pd.to_datetime(df['symptom_timestamp'], errors='coerce')
-    df['latency_seconds'] = (df['symptom_time'] - df['injury_time']).dt.total_seconds()
     df['injury_hour'] = df['injury_time'].dt.hour
 
     def categorize_time(hour):
