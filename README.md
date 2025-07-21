@@ -35,17 +35,17 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
       - intentionality_{accident, suicide, assault, others, unknown, missing}
       - injury_type_{blunt, penetrating, burn, others, unknown, missing}
   - Vital Signs Categorization
-    -Six core vital signs are discretized into clinically meaningful bins:
-      -SBP (systolic_bp): 0, 1–49, 50–75, 76–89, 90+
-      -DBP (diastolic_bp): 0, 1–29, 30–45, 46–59, 60+
-      -Pulse (pulse): 0, 1–29, 30–59, 60–100, 101–119, 120+
-      -Respiration Rate (respiration): 0, 1–5, 6–9, 10–29, 30+
-      -Body Temperature (body_temp, °C): 0, 0–24, 24–28, 28–32, 32–35, 35–37, 38+
-      -Oxygen Saturation (spo2, %): 0, 1–80, 81–90, 91–95, 96+
-    -Each bin is encoded as a binary variable (e.g., sbp_50_75 = 1).
-    -Additionally, two missing value flags are generated for each vital sign:
-      -{vital}_uncheckable: if the value is -1
-      -{vital}_unchecked: if the value is -9
+     -Six core vital signs are discretized into clinically meaningful bins:
+       -SBP (systolic_bp): 0, 1–49, 50–75, 76–89, 90+
+       -DBP (diastolic_bp): 0, 1–29, 30–45, 46–59, 60+
+       -Pulse (pulse): 0, 1–29, 30–59, 60–100, 101–119, 120+
+       -Respiration Rate (respiration): 0, 1–5, 6–9, 10–29, 30+
+       -Body Temperature (body_temp, °C): 0, 0–24, 24–28, 28–32, 32–35, 35–37, 38+
+       -Oxygen Saturation (spo2, %): 0, 1–80, 81–90, 91–95, 96+
+     -Each bin is encoded as a binary variable (e.g., sbp_50_75 = 1).
+     -Additionally, two missing value flags are generated for each vital sign:
+       -{vital}_uncheckable: if the value is -1
+       -{vital}_unchecked: if the value is -9
 
 ---
 
