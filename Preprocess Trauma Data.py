@@ -36,33 +36,39 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
 
     # Example for one-hot maps
     intentionality_map = {
-        'accident': 'unintentional',
-        'suicide': 'intentional_self_harm',
-        'assault': 'assault',
-        'others': 'other',
-        'unknown': 'unspecified'
+        'intentionality_accident': 'unintentional',
+        'intentionality_suicide': 'intentional_self_harm',
+        'intentionality_assault': 'assault',
+        'intentionality_others': 'other',
+        'intentionality_unknown': 'unspecified',
+        'intentionality_missing': 'NaN'
     }
     one_hot_encode(record, 'intentionality', intentionality_map, 'intentionality')
 
     injury_type_map = {
-        'blunt': 'blunt',
-        'penetrating': 'penetrating',
-        'burn': 'burn',
-        'others': 'other',
-        'unknown': 'unknown'
+        'injury_blunt': 'blunt',
+        'injury_penetrating': 'penetrating',
+        'injury_fire': 'burn',
+        'injury_others': 'other',
+        'injury_unknown': 'unknown',
+        'injury_missing_data': 'NaN'
     }
     one_hot_encode(record, 'injury_type', injury_type_map, 'injury_type')
 
     # Repeat similarly for:
     # - injury_mechanism
+    # - job related
     # - accident_location
     # - hospital_visit_route
     # - transport_mode
     # - insurance_type
-    # - consciousness_level
+    # - prearrival cardiac arrest
+    # - prearrival Report
+    # - response 
     # - protective_equipment_use
+    
 
-    # 4. Vital sign categorization (example: SBP)
+    # 4. Vital sign categorization (SBP, DBP, Pulse, Resp, Temp, SpO2)
     def categorize_ranges(series, bins, labels, prefix):
         for i, label in enumerate(labels):
             lower = bins[i]
@@ -70,16 +76,55 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
             mask = (series >= lower) & (series < upper)
             record[f'{prefix}_{label}'] = mask.astype('uint8')
 
-    # SBP: Systolic Blood Pressure
+    # SBP
     categorize_ranges(
         df['systolic_bp'],
         bins=[-float('inf'), 0, 50, 76, 90, float('inf')],
-        labels=['0', '1_49', '50_75', '76_89', '90+'],
+        labels=['0', '1_49', '50_75', '76_89', '90_plus'],
         prefix='sbp'
     )
 
-    # Additional vital signs: DBP, Pulse, Respiration, Temp, SpO2 (omitted here for brevity)
+    # DBP
+    categorize_ranges(
+        df['diastolic_bp'],
+        bins=[-float('inf'), 0, 30, 46, 60, float('inf')],
+        labels=['0', '1_29', '30_45', '46_59', '60_plus'],
+        prefix='dbp'
+    )
 
+    # Pulse
+    categorize_ranges(
+        df['pulse'],
+        bins=[-float('inf'), 0, 30, 60, 101, 120, float('inf')],
+        labels=['0', '1_29', '30_59', '60_100', '101_119', '120_plus'],
+        prefix='pulse'
+    )
+
+    # Respiration
+    categorize_ranges(
+        df['respiration'],
+        bins=[-float('inf'), 0, 6, 10, 30, float('inf')],
+        labels=['0', '1_5', '6_9', '10_29', '30_plus'],
+        prefix='resp'
+    )
+
+    # Body Temperature (°C)
+    categorize_ranges(
+        df['body_temp'],
+        bins=[-float('inf'), 0, 24.0, 28.0, 32.0, 35.0, 37.8, float('inf')],
+        labels=['0', '0_24', '24_28', '28_32', '32_35', '35_37', '38_plus'],
+        prefix='temp'
+    )
+
+    # SpO2 (%)
+    categorize_ranges(
+        df['spo2'],
+        bins=[-float('inf'), 0, 80, 91, 96, float('inf')],
+        labels=['0', '1_80', '81_90', '91_95', '96_plus'],
+        prefix='spo2'
+    )
+
+    # -1, -9
     def make_flags(col, name_prefix):
         record[f'{name_prefix}_uncheckable'] = (df[col] == -1).astype('uint8')
         record[f'{name_prefix}_unchecked'] = (df[col] == -9).astype('uint8')
