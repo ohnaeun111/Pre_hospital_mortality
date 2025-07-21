@@ -86,4 +86,4 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
 ---
 
 ## Web demo
-- 
+- http://ai-wm.khu.ac.kr/Prehospital_Trauma_Mortality/
