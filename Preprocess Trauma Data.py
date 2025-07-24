@@ -61,8 +61,8 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
     # - hospital_visit_route
     # - transport_mode
     # - insurance_type
-    # - prearrival cardiac arrest
-    # - prearrival Report
+    # - prearrival_cardiac_arrest
+    # - prearrival_report
     # - response 
     # - protective_equipment_use
     
