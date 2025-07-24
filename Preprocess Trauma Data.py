@@ -18,8 +18,6 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
 
     # 2. Age binning
     def bin_age(age):
-        if pd.isna(age):
-            return 'unknown'
         return str(min(int(age // 5) + 1, 26))  # age group: 0–4 → 1, ..., 125+ → 26
 
     record['age_group'] = df['age_years'].apply(bin_age)
@@ -27,7 +25,10 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
     # 3. Categorical one-hot encoding
     def one_hot_encode(record, col, mapping, prefix):
         for key, val in mapping.items():
-            record[f"{prefix}_{key}"] = (df[col] == val).astype('uint8')
+            if val == 'NaN':
+                record[f"{prefix}_{key}"] = df[col].isna().astype('uint8')
+            else:
+                record[f"{prefix}_{key}"] = (df[col] == val).astype('uint8')
 
     # Gender
     record['gender_male'] = (df['gender'] == 'male').astype('uint8')
@@ -67,6 +68,8 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
     
 
     # 4. Vital sign categorization (SBP, DBP, Pulse, Resp, Temp, SpO2)
+    # Note: All NaN values in vital signs are assumed to be already replaced with the mean from the train dataset.
+    #       Therefore, we can directly proceed with range-based categorization.
     def categorize_ranges(series, bins, labels, prefix):
         for i, label in enumerate(labels):
             lower = bins[i]
