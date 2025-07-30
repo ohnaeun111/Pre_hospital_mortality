@@ -58,13 +58,10 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
     # - injury_mechanism
     # - job related
     # - accident_location
-    # - hospital_visit_route
-    # - transport_mode
-    # - insurance_type
-    # - prearrival_cardiac_arrest
+    # - ...
     # - prearrival_report
     # - response 
-    # - protective_equipment_use
+
     
 
     # 4. Vital sign categorization (SBP, DBP, Pulse, Resp, Temp, SpO2)
