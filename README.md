@@ -124,7 +124,9 @@ pip install numpy==1.23.5 pandas==2.0.3 scikit-learn==1.3.0 \
 Installation typically takes about 1–3 minutes on a normal desktop computer with a stable internet connection.
 
 3. **Run a test with the sample dataset**
-Pre-trained models are provided for five folds (`fold1.pkl` to `fold5.pkl`)  
+Pre-trained models are provided for five folds (`fold1.pkl` to `fold5.pkl`)
+To run the model on your own data, replace `Sample Data.csv` with your own CSV file.  
+Your file must follow the same format with 21 prehospital variables used in this study.
 You can run evaluation on each fold as follows:
 ```bash  
 python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold1.pkl
@@ -135,6 +137,14 @@ python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold5
 ```
 The inference time for running the model on the provided sample dataset is approximately 1.06 seconds on a normal desktop computer.
 
+***Expected Output***
+When running the evaluation on the provided sample dataset, the model produces the following results :
+- Accuracy: 94.7%  
+- Sensitivity (Recall): 100%  
+- Specificity: 94.1%  
+- AUROC: 1.000  
+- Balanced Accuracy: 97.1%
+The results are consistent across runs, since the pre-trained models and sample dataset are fixed.
 ---
 
 ## Web demo
