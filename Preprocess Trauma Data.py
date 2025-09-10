@@ -20,7 +20,8 @@ def preprocess_trauma_data(df: pd.DataFrame) -> pd.DataFrame:
     def bin_age(age):
         return str(min(int(age // 5) + 1, 26))  # age group: 0–4 → 1, ..., 125+ → 26
 
-    record['age_group'] = df['age_years'].apply(bin_age)
+    record['age_group'] = df['age'].astype(int).apply(bin_age)
+    record['age_group'] =  record['age_group'].astype(int).apply(lambda x: (x - 1) / 25)
 
     # 3. Categorical one-hot encoding
     def one_hot_encode(record, col, mapping, prefix):
