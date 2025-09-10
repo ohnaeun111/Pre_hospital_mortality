@@ -113,23 +113,25 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
 ```bash
 git clone https://github.com/ohnaeun111/Pre_hospital_mortality.git
 cd Pre_hospital_mortality
-
+```
 2. **Install required packages**
+```bash   
 Use Python 3.8.19 and install the following packages:
-```bash
+
 pip install numpy==1.23.5 pandas==2.0.3 scikit-learn==1.3.0 \
             xgboost==1.6.2 lightgbm==3.3.5 betacal==1.1.0 matplotlib==3.7.5
-
+```
 3. **Run a test with the sample dataset**
+```bash   
 Pre-trained models are provided for five folds (`fold1.pkl` to `fold5.pkl`).  
 You can run evaluation on each fold as follows:
 
-```bash
 python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold1.pkl
 python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold2.pkl
 python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold3.pkl
 python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold4.pkl
 python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold5.pkl
+```
 ---
 
 ## Web demo
