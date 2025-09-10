@@ -6,6 +6,28 @@ To address these limitations, we developed an **interpretable AI model utilizing
 
 ---
 
+## System requirements
+ **Programming Language**  
+   - Python 3.8.19
+   - R 4.4.0 (for statistical analysis)
+
+ **Python Libraries**  
+   - NumPy 1.23.5
+   - Pandas 2.0.3
+   - Matplotlib 3.7.5
+   - Scikit-learn 1.3.0
+   - BetaCal 1.1.0
+
+ **R Packages**  
+   - Base R (v4.4.0), with standard statistical functions  
+
+ **Hardware Requirements**  
+   - Standard desktop or laptop computer
+   - Recommended: CPU with ≥ 4 cores, 16GB RAM
+   - Optional: NVIDIA GPU (e.g., RTX 3080, CUDA 11.3) for faster model training
+     
+---
+
 ## Overview  
 We implemented a **gradient boosting ensemble model (XGBoost + LightGBM + Random Forest)** to predict trauma mortality before hospital arrival.  
 The model was designed for **real-time application**, achieving an **inference speed of 1.06 seconds**, making it feasible for use in emergency scenarios.  
@@ -84,6 +106,30 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
 - **`Sample_dataset.csv`** : Sample prehospital data for testing.
 - **`Preprocess Trauma Data`** : Code to preprocess structured prehospital trauma data.
 
+---
+
+## Installation Guide  
+1. **Clone the repository**
+```bash
+git clone https://github.com/ohnaeun111/Pre_hospital_mortality.git
+cd Pre_hospital_mortality
+
+2. **Install required packages**
+Use Python 3.8.19 and install the following packages:
+```bash
+pip install numpy==1.23.5 pandas==2.0.3 scikit-learn==1.3.0 \
+            xgboost==1.6.2 lightgbm==3.3.5 betacal==1.1.0 matplotlib==3.7.5
+
+3. **Run a test with the sample dataset**
+Pre-trained models are provided for five folds (`fold1.pkl` to `fold5.pkl`).  
+You can run evaluation on each fold as follows:
+
+```bash
+python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold1.pkl
+python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold2.pkl
+python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold3.pkl
+python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold4.pkl
+python evaluate.py --input Sample_dataset.csv --model Prehospital-AI-model/fold5.pkl
 ---
 
 ## Web demo
