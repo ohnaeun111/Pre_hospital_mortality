@@ -99,10 +99,10 @@ Compared to the conventional **Shock Index (SI) triage tool**, our AI model demo
 - **`model.py`** : Implements the AI model using XGBoost, LightGBM, and Random Forest.  
 - **`data_loader.py`** : Handles data loading, filtering, and preprocessing for internal and external validation datasets.  
 - **`train.py`** : Trains the AI model using ensemble learning and optimizes class weights.
-- **`Model loader.py`** : Script demonstrates how to perform end‑to‑end ensemble inference using our five fold‑specific models   
+- **`Model loader.py`** : Script for loading the trained models.
 - **`evaluate.py`** : Evaluates the trained model's performance and generates key metrics.   
 - **`README.md`** : Provides an overview of the project and usage instructions.
-- **`Prehospital-AI model`** : Folder containing trained 5-fold model files. (.pkl)
+- **`Prehospital-AI model`** : Folder containing the trained model files. (.pkl)
 - **`Sample_dataset.csv`** : Sample prehospital data for testing.
 - **`Preprocess Trauma Data`** : Code to preprocess structured prehospital trauma data.
 
